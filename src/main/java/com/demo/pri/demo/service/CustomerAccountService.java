@@ -22,8 +22,12 @@ public class CustomerAccountService {
         return customerAccountRepo.findByAccountId(id);
     }
 
-    public void delete(CustomerAccount entity) {
-        customerAccountRepo.delete(entity);
+    public void delete(String accountId) {
+        customerAccountRepo.deleteById(accountId);
+    }
+
+    public CustomerAccount get(String accountId) {
+        return customerAccountRepo.getById(accountId);
     }
 
     public List<CustomerAccount> getAllEntities() {

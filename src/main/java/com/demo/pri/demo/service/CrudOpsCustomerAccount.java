@@ -28,25 +28,23 @@ public class CrudOpsCustomerAccount {
         return customerAccountBO;
     }
     public CustomerAccountBO updateCustomerAccount(CustomerAccountBO customerAccountBO){
-        log.info("Inside update method in crudOps");
         CustomerAccount customerAccount = convertToDTO.convertToDTO(customerAccountBO);
-        log.info("customerAccount : {} ",customerAccount);
         Optional<CustomerAccount> customerAccount1 = customerAccountService.findByAccountId(customerAccount.getAccountId());
-        log.info("customerAccount1 exists : {} ", customerAccount1.isPresent());
         if(customerAccount1.isPresent()){
-            log.info("inside if");
             customerAccountService.saveEntity(customerAccount);
         }
         else{
-            log.info("inside else");
             return null;
         }
         customerAccountBO = convertToBO.convertToBO(customerAccount);
         return customerAccountBO;
     }
 
-    public void deleteCustomerAccount(CustomerAccountBO customerAccountBO){
-        CustomerAccount customerAccount = convertToDTO.convertToDTO(customerAccountBO);
-        customerAccountService.delete(customerAccount);
+    public void deleteCustomerAccount(String accountId){
+        customerAccountService.delete(accountId);
+    }
+
+    public CustomerAccountBO getCustomerAccount(String accountId){
+        return convertToBO.convertToBO(customerAccountService.get(accountId));
     }
 }

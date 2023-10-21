@@ -1,7 +1,10 @@
 package com.demo.pri.demo.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -9,11 +12,14 @@ import java.util.Date;
 @Entity
 @Builder
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "CustomerAccount")
 public class CustomerAccount {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(generator = "system-uuid")
+        @GenericGenerator(name = "system-uuid", strategy = "uuid")
         private String accountId;
 
         @Column(name = "accountState")

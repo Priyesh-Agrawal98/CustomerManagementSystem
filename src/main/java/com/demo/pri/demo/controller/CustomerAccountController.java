@@ -33,8 +33,14 @@ public class CustomerAccountController {
         return ResponseEntity.ok(customerAccountBO);
     }
 
-    @DeleteMapping()
-    public void deleteCustomerAccount(@RequestBody CustomerAccountBO customerAccountBO) {
-        crudOpsCustomerAccount.deleteCustomerAccount(customerAccountBO);
+    @DeleteMapping("/{accountId}")
+    public void deleteCustomerAccount(@PathVariable String accountId) {
+        crudOpsCustomerAccount.deleteCustomerAccount(accountId);
+    }
+
+    @GetMapping("/{accountId}")
+    public ResponseEntity<CustomerAccountBO> getCustomerAccount(@PathVariable String accountId) {
+        CustomerAccountBO customerAccountBO =  crudOpsCustomerAccount.getCustomerAccount(accountId);
+        return ResponseEntity.ok(customerAccountBO);
     }
 }
