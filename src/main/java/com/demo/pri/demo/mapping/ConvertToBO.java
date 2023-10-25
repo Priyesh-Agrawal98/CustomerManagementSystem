@@ -22,5 +22,4 @@ public class ConvertToBO {
                 .addedOnTimeStamp(customerAccount.getAddedOnTimeStamp())
                 .build();
     }
-
 }
